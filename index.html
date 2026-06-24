@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, My Beautiful Wife! ❤️</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ffe5ec, #ffc2d1);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+
+        /* --- Clickable Gift Box Container --- */
+        #box-container {
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            position: absolute;
+            z-index: 10;
+        }
+
+        #box-container:hover {
+            transform: scale(1.05);
+        }
+
+        .instruction {
+            color: #ff477e;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        /* Big Gift Emoji */
+        .gift-box {
+            font-size: 100px;
+            user-select: none;
+        }
+
+        /* --- Surprise Content (Hidden initially) --- */
+        #surprise-content {
+            display: none;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            max-width: 600px;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #ff477e;
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        p {
+            color: #ff7096;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        /* --- iPhone Container Graphic --- */
+        .phone-gift {
+            background: #ffffff;
+            border: 4px solid #ff477e;
+            border-radius: 24px;
+            padding: 20px;
+            display: inline-block;
+            box-shadow: 0 10px 25px rgba(255, 71, 126, 0.2);
+            margin-top: 15px;
+            animation: popIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .phone-label {
+            font-size: 1.6rem;
+            color: #ff477e;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .phone-emoji {
+            font-size: 80px;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        /* --- The Main Pulsing Heart --- */
+        .main-heart {
+            font-size: 60px;
+            color: #ff477e;
+            display: block;
+            margin-top: 15px;
+            animation: heartbeat 1.2s infinite;
+            user-select: none;
+        }
+
+        /* --- Floating Background Hearts --- */
+        .floating-heart {
+            position: absolute;
+            color: rgba(255, 71, 126, 0.6);
+            font-size: 24px;
+            pointer-events: none;
+            bottom: -50px;
+            animation: floatUp 4s linear infinite;
+        }
+
+        /* --- Animations --- */
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-15px); }
+            60% { transform: translateY(-7px); }
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            20% { transform: scale(1.15); }
+            40% { transform: scale(1); }
+            60% { transform: scale(1.15); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-105vh) translateX(var(--random-x)) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Step 1: The Surprise Box -->
+    <div id="box-container" onclick="revealSurprise()">
+        <div class="instruction">To my lovely wife, tap to open your surprise! 🎁</div>
+        <div class="gift-box">🎁</div>
+    </div>
+
+    <!-- Step 2: The Birthday Content -->
+    <div id="surprise-content">
+        <h1>Happy Birthday, My Belove Wife! 🎉</h1>
+        <p>Thank you for loving me the way you do. Wishing you a wonderful day filled with endless joy and happiness! ❤️</p>
+        
+        <div class="phone-gift">
+            <div class="phone-label">✨ iPhone 17 Pro Max ✨</div>
+            <div class="phone-emoji">📱</div>
+            <p style="font-size: 1.1rem; margin-bottom: 0; color: #ff7096;"></p>
+        </div>
+
+        <div class="main-heart">❤️</div>
+    </div>
+
+    <script>
+        function revealSurprise() {
+            const box = document.getElementById('box-container');
+            const content = document.getElementById('surprise-content');
+
+            // Hide the gift box
+            box.style.display = 'none';
+
+            // Show the surprise content and fade it in
+            content.style.display = 'block';
+            setTimeout(() => {
+                content.style.opacity = '1';
+            }, 50);
+
+            // Start generating floating hearts
+            setInterval(createFloatingHeart, 300);
+        }
+
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+            
+            // Randomize heart styles (emojis)
+            const heartTypes = ['❤️', '💖', '💝', '💕', '💗'];
+            heart.innerText = heartTypes[Math.floor(Math.random() * heartTypes.length)];
+
+            // Randomize position and sizes
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = Math.random() * 20 + 20 + 'px';
+            
+            // Randomize animation speed
+            const duration = Math.random() * 3 + 3; // between 3s and 6s
+            heart.style.animationDuration = duration + 's';
+
+            // Custom property for random horizontal drift in CSS
+            const drift = (Math.random() * 200 - 100) + 'px';
+            heart.style.setProperty('--random-x', drift);
+
+            document.body.appendChild(heart);
+
+            // Remove heart after animation ends
+            setTimeout(() => {
+                heart.remove();
+            }, duration * 1000);
+        }
+    </script>
+</body>
+</html>
